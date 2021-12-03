@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  //title:'posts';
+  postData:any[]=[];
+  specifiedPost:any=[];
+  show:boolean=false;
   constructor(private router:Router) { }
 
   AddPost(){
@@ -20,6 +23,12 @@ export class DashboardComponent implements OnInit {
   totalPost(){
     this.router.navigateByUrl('/totalpost');
   }
+
+  onFormSubmit(data:any){
+    this.postData.push(data);
+  }
+
+  
   ngOnInit(): void {
   }
 

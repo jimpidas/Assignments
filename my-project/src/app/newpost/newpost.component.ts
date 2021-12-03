@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,23 +7,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./newpost.component.css']
 })
 export class NewpostComponent implements OnInit {
-  submitted: boolean=false;
-  newpostForm!: FormGroup;
   
+  title:string="";
+  description:string="";
 
-  constructor(private formBuilder: FormBuilder) { }
+  @Output() onSubmit=new EventEmitter<any>()
+
+  constructor() { }
+
 
   ngOnInit(): void {
-    this.newpostForm = this.formBuilder.group({
-      headline: '',
-      content: ''
-  });
+   
   }
-
-  onSubmit() {
-    this.submitted = true;
-    
-    if (this.newpostForm.valid) {
-        console.log("New post added");
-    }}
+  submitForm(){
+    this.onSubmit.emit();
+  }
+  
 }
